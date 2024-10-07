@@ -8,6 +8,10 @@ $ksoLabelValue = getenv('KSO_DEPLOYMENT_LABEL_VALUE');
 $betterstackApiToken = getenv('BETTERSTACK_API_TOKEN');
 $betterstackMonitorGroupName = getenv('BETTERSTACK_MONITOR_GROUP_NAME');
 
+if (!$ksoURL || strlen($ksoURL) == 0) {
+    return;
+}
+
 // Get KSO Access Token
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $ksoURL . '/api/token');
