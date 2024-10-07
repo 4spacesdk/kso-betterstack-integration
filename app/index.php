@@ -1,11 +1,13 @@
 <?php
 
 // Google Health Checks and Kube Probe must return 200 on /
-$isGoogleHealthCheck = strpos($_SERVER['HTTP_USER_AGENT'], 'GoogleHC') !== false;
-$isKubeProbe = strpos($_SERVER['HTTP_USER_AGENT'], 'kube-probe') !== false;
-if ($isGoogleHealthCheck || $isKubeProbe) {
-    http_response_code(200);
-    exit;
+if (isset($_SERVER['HTTP_USER_AGENT'])) {
+    $isGoogleHealthCheck = strpos($_SERVER['HTTP_USER_AGENT'], 'GoogleHC') !== false;
+    $isKubeProbe = strpos($_SERVER['HTTP_USER_AGENT'], 'kube-probe') !== false;
+    if ($isGoogleHealthCheck || $isKubeProbe) {
+        http_response_code(200);
+        exit;
+    }
 }
 
 $ksoURL = getenv('KSO_BASE_URL');
@@ -40,7 +42,6 @@ $ch = curl_init();
 curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json', "Authorization: Bearer $ksoAccessToken"]);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_URL, $ksoURL . '/api/workspaces?' . http_build_query([
-        'filter' => 'label:environment=prod',
         'include' => 'deployment'
     ]));
 $raw = curl_exec($ch);
