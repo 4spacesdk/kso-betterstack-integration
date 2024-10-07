@@ -1,5 +1,13 @@
 <?php
 
+// Google Health Checks and Kube Probe must return 200 on /
+$isGoogleHealthCheck = strpos($_SERVER['HTTP_USER_AGENT'], 'GoogleHC') !== false;
+$isKubeProbe = strpos($_SERVER['HTTP_USER_AGENT'], 'kube-probe') !== false;
+if ($isGoogleHealthCheck || $isKubeProbe) {
+    http_response_code(200);
+    exit;
+}
+
 $ksoURL = getenv('KSO_BASE_URL');
 $ksoClientId = getenv('KSO_CLIENT_ID');
 $ksoClientSecret = getenv('KSO_CLIENT_SECRET');
