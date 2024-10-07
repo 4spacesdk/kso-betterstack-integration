@@ -16,7 +16,7 @@ steps:
           --cache-from $_AR_HOSTNAME/$PROJECT_ID/$_AR_REPOSITORY/$REPO_NAME:latest \
           --build-arg BUILD_TAG_NAME=$TAG_NAME \
           --build-arg BUILD_SHORT_SHA=$SHORT_SHA \
-          -f docker/Dockerfile \
+          -f docker/cloud+local/Dockerfile \
           .
     secretEnv: ['USERNAME']
 
