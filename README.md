@@ -17,7 +17,7 @@
 * BETTERSTACK_MONITOR_GROUP_NAME
   * This application with create a new group with this name
 
-## Install kso
+## Install kso-betterstack-integration
 ### Create `values.yaml` file
 For a complete set of options see [link](https://github.com/4spacesdk/helm-charts/blob/master/charts/kso-betterstack-integration/values.yaml)
 ```
@@ -48,19 +48,19 @@ resources:
    memory: 64Mi
 ```
 
-```
+
 ### Install
 ```
-helm upgrade --install kso 4spacesdk/kso-betterstack-integration --values=values.yaml --namespace kso --create-namespace
+helm upgrade --install kso-betterstack-integration 4spacesdk/kso-betterstack-integration --values=values.yaml --namespace kso --create-namespace
 ```
 
 ### Upgrade
 ```
 helm repo update
-helm upgrade --install kso 4spacesdk/kso-betterstack-integration --values=values.yaml --namespace kso
+helm upgrade --install kso-betterstack-integration 4spacesdk/kso-betterstack-integration --values=values.yaml --namespace kso
 ```
 
 ### Delete kso
 ```
-helm delete kso
+helm delete kso-betterstack-integration
 ```
