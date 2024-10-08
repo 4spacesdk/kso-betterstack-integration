@@ -51,6 +51,7 @@ resources:
 
 ### Install
 ```
+helm repo add 4spacesdk https://4spacesdk.github.io/helm-charts
 helm upgrade --install kso-betterstack-integration 4spacesdk/kso-betterstack-integration --values=values.yaml --namespace kso --create-namespace
 ```
 
